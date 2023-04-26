@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>KLIT INDEX</title>
+
+<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+
+<Script>
+	$(document).ready(function() {
+
+		$("#cname").on("change", function(e) {
+			$.ajax({
+				type : "GET",
+				url : "cmsg",
+				data : {
+					cname : $("#cname").val()
+				},
+				success : function(data) {
+					$("#dropDownDiv").html(data);
+				}
+			});
+		});
+
+		$("#submitBtn").click(function(e) {
+			$.ajax({
+				type : "GET",
+				url : "msg",
+				data : {
+					name : $("#username").val()
+				},
+				success : function(data) {
+					$("#msgDiv").html(data);
+				},
+				error : function(result) {
+					alert('error');
+				}
+			});
+		});
+	});
+</Script>
+
+
+
+</head>
+<body>
+
+
+
+	Enter Name :
+	<input type="text" name="name" id="username" />
+
+	<input type="button" value="Submit" id="submitBtn" />
+
+	<hr />
+
+	<div id="msgDiv"></div>
+
+	<hr />
+
+	<select id="cname">
+		<option>-Select-</option>
+		<option>India</option>
+		<option>USA</option>
+		<option>UK</option>
+		<option>Canada</option>
+	</select>
+
+	<hr />
+
+	<div id="dropDownDiv"></div>
+
+
+
+
+</body>
+</html>
